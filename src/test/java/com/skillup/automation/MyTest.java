@@ -11,6 +11,7 @@ public class MyTest extends TestRunner {
     public void myTest() {
         driver.get(URL);
         String actualTitle = driver.getTitle();
+        String asd = "test";
 
         Assert.assertEquals(actualTitle, EXPECTED_TITLE, "SITE TITLE IS WRONG");
     }
