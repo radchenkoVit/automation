@@ -1,4 +1,4 @@
-package com.skillup.automation;
+package com.skillup.automation.lesson_1;
 
 public class Cat {
     public String name;
