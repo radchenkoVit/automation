@@ -4,14 +4,17 @@ import com.skillup.automation.utils.ExcelReader;
 import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class ReadFromExcelProvider {
 
     @DataProvider(name = "dataLoginFromExcel")
     public Object[][] getData() throws IOException {
-        ExcelReader excel = new ExcelReader("F:\\automation_teacher_project\\automation\\positiveLoginData.xls");
+        String path = Paths.get(System.getProperty("user.dir"), "positiveLoginData.xls").toAbsolutePath().toString();
+
+        ExcelReader excel = new ExcelReader(path);
         int columnSize = excel.getColumnSize();
-        int rowSize = excel.getRowsSize();
+        int rowSize = excel.getRowsSize() - 1;
 
         Object[][] data = new Object[rowSize][columnSize];
 

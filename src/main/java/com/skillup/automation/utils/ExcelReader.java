@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class ExcelReader {
-    public Workbook dataFile;
+    private Workbook dataFile;
 
     private static final int FIRST_DATA_ROW = 1;
     private static final int COLUMN_NAME_ROW = 0;
