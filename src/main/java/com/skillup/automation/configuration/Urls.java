@@ -4,4 +4,6 @@ package com.skillup.automation.configuration;
 public class Urls {
     public static final String LOGIN_URL = "https://www.linkedin.com/uas/login";
     public static final String SIGN_UP_URL = "https://www.linkedin.com/start/join";
+
+    public static final String DOU_URL = "https://dou.ua/";
 }

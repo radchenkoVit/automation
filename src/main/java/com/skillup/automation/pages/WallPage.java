@@ -15,7 +15,7 @@ public class WallPage extends CommonPage {
     }
 
     public void assertSearchInputPresent() {
-        Assert.assertTrue(isElementPresent(SEARCH_INPUT));
+        Assert.assertTrue(waitTillElementPresent(SEARCH_INPUT));
     }
 
 }
