@@ -14,7 +14,7 @@ public class ReadFromExcelProvider {
 
         ExcelReader excel = new ExcelReader(path);
         int columnSize = excel.getColumnSize();
-        int rowSize = excel.getRowsSize() - 1;
+        int rowSize = excel.getRowsSize();
 
         Object[][] data = new Object[rowSize][columnSize];
 
