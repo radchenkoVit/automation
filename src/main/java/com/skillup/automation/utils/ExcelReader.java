@@ -50,7 +50,7 @@ public class ExcelReader {
             return 0;
         }
 
-        return row;
+        return row - 1;
     }
 
     private Sheet getDefaultSheet() {
