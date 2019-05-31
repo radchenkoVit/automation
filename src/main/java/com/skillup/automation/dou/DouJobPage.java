@@ -8,6 +8,8 @@ import org.testng.Assert;
 
 import java.util.List;
 
+import static com.skillup.automation.configuration.Wait.TWO_SECONDS;
+
 public class DouJobPage extends CommonPage {
     private static final String QA_JOBS_LINK ="a[href*='category=QA']";
     private static final String KIEV_JOB_LINK = "//a[contains(text(), 'Киев')]";
@@ -34,8 +36,9 @@ public class DouJobPage extends CommonPage {
     }
 
     public DouJobPage clickTillMoreJobsButtonExists() {
-        while (waitTillElementVisible(MORE_JOBS_BUTTON)) {
+        while (waitTillElementClickable(MORE_JOBS_BUTTON, TWO_SECONDS)) {
             click(MORE_JOBS_BUTTON);
+            Wait.waitFor(Wait.ONE_SECOND);//HARDCODED but leave it as it is
         }
 
         return this;

@@ -72,6 +72,22 @@ public class CommonPage {
         return true;
     }
 
+    protected boolean waitTillElementClickable(String locator) {
+        return waitTillElementClickable(locator, Wait.FIVE_SECONDS);
+    }
+
+    protected boolean waitTillElementClickable(String locator, int seconds) {
+        WebDriverWait wait = new WebDriverWait(driver, seconds);
+
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(find(locator)));
+        } catch (TimeoutException e) {
+            return false;
+        }
+
+        return true;
+    }
+
     protected boolean waitTillElementVisible(String locator) {
         return waitTillElementVisible(locator, Wait.FIVE_SECONDS);
     }
