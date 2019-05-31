@@ -52,12 +52,16 @@ public class CommonPage {
         return driver.findElement(find(locator)).getText().trim();
     }
 
+    protected boolean waitTillElementPresent(String locator) {
+        return waitTillElementVisible(locator, Wait.FIVE_SECONDS);
+    }
+
     //общий метод который говорит присутсвует элемент на странице или нет
     //используется explicit wait
     //если выбрасывается исключение - то при перехвати исключения - влзвращаем false
     // значит элемент не был найден за условленное время
-    protected boolean waitTillElementPresent(String locator) {
-        WebDriverWait wait = new WebDriverWait(driver, Wait.TEN_SECONDS);
+    protected boolean waitTillElementPresent(String locator, int seconds) {
+        WebDriverWait wait = new WebDriverWait(driver, seconds);
 
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(find(locator)));
@@ -69,7 +73,11 @@ public class CommonPage {
     }
 
     protected boolean waitTillElementVisible(String locator) {
-        WebDriverWait wait = new WebDriverWait(driver, 2);
+        return waitTillElementVisible(locator, Wait.FIVE_SECONDS);
+    }
+
+    protected boolean waitTillElementVisible(String locator, int seconds) {
+        WebDriverWait wait = new WebDriverWait(driver, seconds);
 
         try {
             wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(find(locator)));
@@ -83,7 +91,7 @@ public class CommonPage {
     //метод который определяет как находятся элементы
     //такая реализация возможно ибо принято решение писать локаторы только через XPATH or CSS
     protected By find(String locator) {
-        if (locator.startsWith("//") || locator.startsWith("./")){
+        if (locator.startsWith("//") || locator.startsWith("./")) {
             return By.xpath(locator);
         }
 
