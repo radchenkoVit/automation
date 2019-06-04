@@ -6,6 +6,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -32,6 +33,13 @@ public class CommonPage {
         WebElement input = driver.findElement(find(locator));
         input.clear();
         input.sendKeys(text);
+    }
+
+    public void selectFromDropDown(String locator, String value) {
+        WebElement element = driver.findElement(find(locator));
+        Select select = new Select(element);
+
+        select.selectByValue(value);
     }
 
     public void click(String locator) {

@@ -12,10 +12,11 @@ import static com.skillup.automation.configuration.Wait.TWO_SECONDS;
 
 public class DouJobPage extends CommonPage {
     private static final String QA_JOBS_LINK ="a[href*='category=QA']";
-    private static final String KIEV_JOB_LINK = "//a[contains(text(), 'Киев')]";
-    private static final String KIEV_JOB_NUMBER = "//a[contains(text(), 'Киев')]//following-sibling::em";
+    private static final String JOB_LINK_PATTERN = "//a[contains(text(), '%s')]";
+    private static final String JOB_NUMBER_PATTERN = "//a[contains(text(), '%s')]//following-sibling::em";
     private static final String MORE_JOBS_BUTTON = ".more-btn a";
     private static final String ALL_JOBS_LINKS = "#vacancyListId li.l-vacancy";
+    private static final String SELECT_JOB_CATEGORY = "select[name='category']";
 
     public DouJobPage(WebDriver driver) {
         super(driver);
@@ -26,13 +27,24 @@ public class DouJobPage extends CommonPage {
         return this;
     }
 
-    public DouJobPage clickKievJobs() {
-        click(KIEV_JOB_LINK);
+    public DouJobPage selectJobCategory(String category) {
+        selectFromDropDown(SELECT_JOB_CATEGORY, category);
+        Wait.waitFor(Wait.ONE_SECOND);
         return this;
     }
 
-    public String getKievJobNumber() {
-        return getText(KIEV_JOB_NUMBER);
+    public DouJobPage clickCityJobs(String city) {
+        //"//a[contains(text(), '%s')]%s"; --> //a[contains(text(), 'Киев')]"
+        String locator = String.format(JOB_LINK_PATTERN, city);
+
+        click(locator);
+        return this;
+    }
+
+    public String getCityJobNumber(String city) {
+        //"//a[contains(text(), '%s')]//following-sibling:em --> //a[contains(text(), 'Киев')]//following-sibling:em
+        String locator = String.format(JOB_NUMBER_PATTERN, city);
+        return getText(locator);
     }
 
     public DouJobPage clickTillMoreJobsButtonExists() {

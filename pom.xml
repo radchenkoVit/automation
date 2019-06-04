@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-      <suite>smoke.xml</suite>
+        <suite>smoke.xml</suite>
     </properties>
 
     <dependencies>
@@ -58,11 +58,13 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/java/com/skillup/automation/suites/${suite}</suiteXmlFile>
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <browser>chrome</browser>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 
 
 </project>
