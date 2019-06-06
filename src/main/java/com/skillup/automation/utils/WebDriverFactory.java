@@ -3,13 +3,14 @@ package com.skillup.automation.utils;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import static com.skillup.automation.configuration.ConfigurationLoader.getBrowserName;
 
 public class WebDriverFactory {
 
     public static void setUpBrowserDrivers() {
-        String browser = System.getProperty("browser");
+        String browser = getBrowserName();
 
         if ("chrome".equals(browser)) {
             WebDriverManager.chromedriver().setup();
@@ -20,7 +21,7 @@ public class WebDriverFactory {
 
     public static WebDriver initDriver() {
         WebDriver driver = null;
-        String browser = System.getProperty("browser");
+        String browser = getBrowserName();
         //browser.equals("chrome"); //--> NUllPOINTER Exception
         //"chrome".equals(null);// --> false
         if ("chrome".equals(browser)) {

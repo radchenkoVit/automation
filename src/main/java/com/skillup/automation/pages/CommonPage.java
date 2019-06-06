@@ -1,6 +1,7 @@
 package com.skillup.automation.pages;
 
 import com.skillup.automation.configuration.Wait;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -16,6 +17,8 @@ import java.util.List;
 public class CommonPage {
     protected WebDriver driver;
 
+    private static Logger log = Logger.getLogger(CommonPage.class.getName());
+
     public CommonPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -30,12 +33,14 @@ public class CommonPage {
 
     //метод который вводит текст
     public void enterText(String locator, String text) {
+        log.debug(String.format("Enter text: %s to element with locator: %s", text, locator));
         WebElement input = driver.findElement(find(locator));
         input.clear();
         input.sendKeys(text);
     }
 
     public void selectFromDropDown(String locator, String value) {
+        log.debug(String.format("Select by value: %s with locator: %s", value, locator));
         WebElement element = driver.findElement(find(locator));
         Select select = new Select(element);
 
@@ -43,6 +48,7 @@ public class CommonPage {
     }
 
     public void click(String locator) {
+        log.debug(String.format("Click on element with locator: %s", locator));
         driver.findElement(find(locator)).click();
     }
 
@@ -50,6 +56,7 @@ public class CommonPage {
     //findElements() - не ожидает появления элемента на странице
     //возвразащет значение мгновенно
     public boolean isElementPresent(String locator) {
+        log.debug(String.format("Find if element present by locator: %s", locator));
         List<WebElement> foundElements = driver.findElements(find(locator));
         return !foundElements.isEmpty();
     }

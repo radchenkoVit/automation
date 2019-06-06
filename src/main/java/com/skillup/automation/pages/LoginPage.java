@@ -1,6 +1,7 @@
 package com.skillup.automation.pages;
 
 import com.skillup.automation.configuration.Wait;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,11 +20,14 @@ public class LoginPage extends CommonPage {
     private static final String JOIN_NOW_LINK_XPATH_LOCATOR = "//a[@href ='/start/join']";
     private static final String ERROR_PASSWORD_DIV_CSS_LOCATOR = "#error-for-password";
 
+    private static Logger log = Logger.getLogger(LoginPage.class.getName());
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     public LoginPage open() {
+        log.info(String.format("Open browser with url: %s", LOGIN_URL));
         driver.get(LOGIN_URL);
         return this;
     }
@@ -40,16 +44,19 @@ public class LoginPage extends CommonPage {
     }
 
     public LoginPage enterEmail(String email) {
+        log.info(String.format("Enter email for login form: %s", email));
         enterText(EMAIL_OR_PHONE_INPUT_XPATH_LOCATOR, email);
         return this;
     }
 
     public LoginPage enterPassword(String password) {
+        log.info(String.format("Enter password for login form: %s", password));
         enterText(PASSWORD_INPUT_XPATH_LOCATOR, password);
         return this;
     }
 
     public LoginPage clickLoginButton() {
+        log.info("Click SignIn button on login form");
         click(SIGN_IN_BUTTON_XPATH_LOCATOR);
         return this;
     }

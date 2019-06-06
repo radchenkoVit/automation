@@ -6,11 +6,13 @@ import org.testng.annotations.DataProvider;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+import static com.skillup.automation.configuration.ConfigurationLoader.getBaseDir;
+
 public class ReadFromExcelProvider {
 
     @DataProvider(name = "dataLoginFromExcel")
     public Object[][] getData() throws IOException {
-        String path = Paths.get(System.getProperty("user.dir"), "positiveLoginData.xls").toAbsolutePath().toString();
+        String path = Paths.get(getBaseDir(), "positiveLoginData.xls").toAbsolutePath().toString();
 
         ExcelReader excel = new ExcelReader(path);
         int columnSize = excel.getColumnSize();
