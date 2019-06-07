@@ -1,11 +1,15 @@
 package com.skillup.automation.pages;
 
 import com.skillup.automation.configuration.Wait;
+import com.skillup.automation.utils.WebDriverFactory;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -45,6 +49,31 @@ public class CommonPage {
         Select select = new Select(element);
 
         select.selectByValue(value);
+    }
+
+    // Assume driver is a valid WebDriver instance that
+    // has been properly instantiated elsewhere.
+    public void clickViaJs(String locator) {
+        WebElement element = driver.findElement(find(locator));
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", element);
+    }
+
+    public void waitForLoadByState() {
+        WebDriverWait wait = new WebDriverWait(driver, Wait.TEN_SECONDS);
+
+        try {
+            wait.until((ExpectedCondition<Boolean>) wd ->
+                    ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        } catch (TimeoutException e) {
+            log.info("LONG LOADING OF SOME PAGE");
+        }
+    }
+
+    public void hover(String locator) {
+        log.debug(String.format("hover on element with locator: %s", locator));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(driver.findElement(find(locator))).perform();
     }
 
     public void click(String locator) {
