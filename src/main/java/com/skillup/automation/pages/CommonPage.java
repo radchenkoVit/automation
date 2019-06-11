@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -47,7 +48,6 @@ public class CommonPage {
         log.debug(String.format("Select by value: %s with locator: %s", value, locator));
         WebElement element = driver.findElement(find(locator));
         Select select = new Select(element);
-
         select.selectByValue(value);
     }
 

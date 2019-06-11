@@ -10,13 +10,14 @@
 
     <properties>
         <suite>smoke.xml</suite>
+        <selenium.version>3.141.59</selenium.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
+            <version>${selenium.version}</version>
         </dependency>
 
         <dependency>

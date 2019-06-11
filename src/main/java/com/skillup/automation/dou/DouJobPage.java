@@ -34,7 +34,6 @@ public class DouJobPage extends CommonPage {
     }
 
     public DouJobPage clickCityJobs(String city) {
-        //"//a[contains(text(), '%s')]%s"; --> //a[contains(text(), 'Киев')]"
         String locator = String.format(JOB_LINK_PATTERN, city);
 
         click(locator);
@@ -42,7 +41,6 @@ public class DouJobPage extends CommonPage {
     }
 
     public String getCityJobNumber(String city) {
-        //"//a[contains(text(), '%s')]//following-sibling:em --> //a[contains(text(), 'Киев')]//following-sibling:em
         String locator = String.format(JOB_NUMBER_PATTERN, city);
         return getText(locator);
     }
